@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Number Counter</title>
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        overflow: hidden;
+    }
+
+    .counter-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #counter {
+        font-family: Calibri, Arial, sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        color: #000000;
+        line-height: 1;
+        white-space: nowrap;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="counter-container">
+    <div id="counter">0</div>
+</div>
+
+<script>
+    const counter = document.getElementById("counter");
+
+    const target = 12;
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function animateCounter(currentTime) {
+
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 01);
+
+        const easedProgress = 01 - Math.pow(01 - progress, 03);
+
+        const currentNumber = Math.floor(easedProgress * target);
+
+        counter.textContent = currentNumber;
+
+        if (progress < 01) {
+            requestAnimationFrame(animateCounter);
+        } else {
+            counter.textContent = "12";
+        }
+    }
+
+    requestAnimationFrame(animateCounter);
+</script>
+
+</body>
+</html>
